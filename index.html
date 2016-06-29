@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    <style>
+        body     { padding-top:30px; }
+    </style>
+
+    <!-- JS -->
+    <script src="https://code.angularjs.org/1.4.0-rc.1/angular.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="validation">
+<div class="container">
+<form class="form-horizontal" name="formControl" ng-submit="submit(formControl.$valid)" ng-controller="myController"  novalidate>
+    <div class="form-group" ng-class="{'has-error':formControl.name.$invalid && formControl.name.$dirty  }">
+        <label>Name</label>
+        <input type="text"
+               class="form-control"
+               name="name"
+               ng-model="exampleInputName2"
+               placeholder="Jane Doe" required>
+        <p ng-show="formControl.name.$invalid && formControl.name.$dirty">Name should not be empty</p>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':formControl.Username.$invalid && formControl.Username.$dirty  }">
+        <label>UserName</label>
+        <input type="text"
+               class="form-control"
+               name="Username"
+               ng-model="exampleInputName3"
+               ng-minlength="3"
+               ng-maxlength="8"
+               placeholder="Jane Doe" required>
+        <p ng-show="formControl.Username.$error.minlength">Username must be at least 3 characters long</p>
+        <p ng-show="formControl.Username.$error.maxlength">Username must be at least 8 characters long</p>
+
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':formControl.email.$invalid && formControl.email.$dirty  }">
+        <label>Email</label>
+        <input type="text"
+               class="form-control"
+               name="email"
+               ng-model="exampleInputName4"
+               placeholder="Jane Doe" required>
+        <p ng-show="formControl.email.$invalid && formControl.email.$dirty">Email should not be empty</p>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':formControl.password.$error.myDirectiveRequired && formControl.password.$dirty  }">
+        <label>Password</label>
+        <input type="password"
+               class="form-control"
+               name="password"
+               ng-model="exampleInputName5"
+               placeholder="Jane Doe"
+               my-directive required>
+        <p ng-show="formControl.password.$error.myDirectiveRequired">Password should not be empty</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send invitation</button>
+</form>
+</div>
+</body>
+</html>
